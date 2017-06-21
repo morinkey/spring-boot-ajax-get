@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" content="" />
+<title>jQuery1.5で、Ajaxを使う</title>
+<script src="https://code.jquery.com/jquery-1.5.min.js" type="text/javascript" ></script>
+ 
+<!-- スクリプト部分 -->
+<script type="text/javascript">
+    $( function() {
+        $( '#ajax-button' ) .click(
+        function() {
+            var hostUrl= 'http://localhost:8080/api/v1/tickets/100';
+            $.ajax({
+                url: hostUrl,
+                type:'GET',
+                dataType: 'json',
+                timeout:10000,
+            }).success(function(data) {
+                alert('success!! APIの結果は、' + data.id);
+            }).error(function(data) {
+                alert('error!!!');
+            }).complete(function(data) {
+                alert('complete!!!');
+            });
+        });
+    } );
+</script>
+<style type="text/css">
+<!--
+#ajax-button {
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 10px 30px;
+    background-color: #248;
+    color: #fff;
+    border-style: none;
+}
+-->
+</style>
+
+</head>
+ 
+<!-- HTML部分 -->
+<body>
+ 
+<h1>jQuery1.5で、Ajaxを使う</h1>
+<p><input type="button" id="ajax-button" value="jQuery1.5のAjaxでAPIをCallします。" /></p><br />
+<a href="/">Topへ</a>
+
+</body>
+</html>
